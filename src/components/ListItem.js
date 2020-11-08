@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Linking,
 } from "react-native";
+import { Toast } from "native-base";
 import { ScrollView } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-navigation";
 import colors from "../../assets/colors";
@@ -33,7 +34,17 @@ const ListItem = ({ item, onPress, closeModal }) => {
         <Text style={styles.listItemTitle}>{item.subject}</Text>
         <Text style={styles.listItemTitle}>{item.term}</Text>
       </View>
-      <TouchableOpacity onPress={onPress} onPressIn={closeModal} >
+      <TouchableOpacity
+        onPress={onPress}
+        onPressIn={closeModal}
+        onPressOut={() =>
+          Toast.show({
+            text: "授業を追加しました",
+            buttonText: "OK",
+            position: "top",
+          })
+        }
+      >
         <View style={styles.button}>
           <Text>追加</Text>
         </View>

@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Root } from "native-base";
 import { firebaseConfig } from "./src/config/config";
 import firebase from "firebase/app";
 import { Provider } from "react-redux";
@@ -12,7 +12,9 @@ if (firebase.apps.length === 0) firebase.initializeApp(firebaseConfig);
 const App = () => {
   return (
     <Provider store={store}>
-      <Kulms />
+      <Root>
+        <Kulms />
+      </Root>
     </Provider>
   );
 };

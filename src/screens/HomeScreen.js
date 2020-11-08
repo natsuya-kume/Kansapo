@@ -69,8 +69,21 @@ const Home = (props) => {
         if (table[index].subject.length === 1) {
           return (
             <View>
-              <Text key={index}>{a.subject}</Text>
-              <Text key={item}>{a.classroom}</Text>
+              <Text key={index} style={{ marginTop: 3 }}>
+                {a.subject}
+              </Text>
+              {a.classroom === "" || !a.classroom ? null : (
+                <Text
+                  key={item}
+                  style={{
+                    marginTop: 10,
+                    backgroundColor: "#f69679",
+                    marginHorizontal: 3,
+                  }}
+                >
+                  {a.classroom}
+                </Text>
+              )}
             </View>
           );
         }
