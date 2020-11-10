@@ -14,6 +14,7 @@ import colors from "../../assets/colors";
 import { Entypo } from "@expo/vector-icons";
 
 const ListItem = ({ item, onPress, closeModal }) => {
+  // シラバスを開く関数
   const openSyllabus = () => {
     Linking.openURL(item.syllabus).then((supported) => {
       if (!supported) {
@@ -41,7 +42,7 @@ const ListItem = ({ item, onPress, closeModal }) => {
           Toast.show({
             text: "授業を追加しました",
             buttonText: "OK",
-            position: "top",
+            position: "bottom",
           })
         }
       >

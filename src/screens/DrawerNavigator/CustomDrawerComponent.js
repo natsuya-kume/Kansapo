@@ -1,3 +1,4 @@
+// ドロワーを表示するコンポーネント
 import React, { Component } from "react";
 import {
   StyleSheet,

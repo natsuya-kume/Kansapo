@@ -1,3 +1,4 @@
+// 配列に変換する関数
 export const snapshotToArray = (snapshot) => {
   let returnArr = [];
 

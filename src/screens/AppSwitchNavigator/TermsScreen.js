@@ -1,3 +1,4 @@
+// 利用規約を表示するスクリーン
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";

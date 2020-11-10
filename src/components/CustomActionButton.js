@@ -1,3 +1,4 @@
+// ボタン管理のコンポーネント
 import React from "react";
 import { StyleSheet, View, TouchableOpacity } from "react-native";
 import colors from "../../assets/colors";

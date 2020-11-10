@@ -1,3 +1,4 @@
+// ログインする時のスクリーン
 import React, { useState } from "react";
 import {
   StyleSheet,
@@ -5,17 +6,17 @@ import {
   View,
   ActivityIndicator,
   TextInput,
-} from 'react-native';
+} from "react-native";
 import colors from "../../assets/colors";
 import { Form, Item, Input, Label, Icon } from "native-base";
 import CustomActionButton from "../components/CustomActionButton";
-import  firebase from 'firebase/app';
-import 'firebase/auth';
-import 'firebase/database';
-import { useDispatch } from 'react-redux';
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/database";
+import { useDispatch } from "react-redux";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-const LoginScreen = ({navigation}) => {
+const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -24,26 +25,23 @@ const LoginScreen = ({navigation}) => {
 
   const onSignIn = async () => {
     if (email && password) {
-      // this.setState({ isLoading: true });
       setIsLoading(true);
       try {
         const response = await firebase
           .auth()
           .signInWithEmailAndPassword(email, password);
         if (response) {
-          // this.setState({ isLoading: false });
           setIsLoading(false);
           dispatch({ type: "SIGN_IN", payload: response.user });
-          // this.props.signIn(response.user);
-          // this.props.navigation.navigate("LoadingScreen");
         }
       } catch (error) {
-        // this.setState({ isLoading: false });
         setIsLoading(false);
 
         switch (error.code) {
           case "auth/user-not-found":
-            alert("そのユーザーは存在しません。メールアドレス・パスワードが正しいことを確認してください。");
+            alert(
+              "そのユーザーは存在しません。メールアドレス・パスワードが正しいことを確認してください。"
+            );
             break;
           case "auth/invalid-email":
             alert("メールアドレスとパスワードを入力してください");
@@ -58,18 +56,13 @@ const LoginScreen = ({navigation}) => {
   };
 
   const onSignUp = async () => {
-    
     if (email && password) {
-   
-
-      // this.setState({ isLoading: true });
       setIsLoading(true);
       try {
         const response = await firebase
           .auth()
           .createUserWithEmailAndPassword(email, password);
         if (response) {
-          // this.setState({ isLoading: false });
           setIsLoading(false);
           firebase.auth().currentUser.sendEmailVerification();
 
@@ -79,13 +72,9 @@ const LoginScreen = ({navigation}) => {
             .child(response.user.uid)
             .set({ email: response.user.email, uid: response.user.uid });
           dispatch({ type: "SIGN_IN", payload: response.user });
-          // this.props.navigation.navigate("LoadingScreen");
-          // this.onSignIn(this.state.email, this.state.password);
         }
       } catch (error) {
         setIsLoading(false);
-
-        // this.setState({ isLoading: false });
 
         if (error.code == "auth/email-already-in-use") {
           alert("そのユーザーは既に存在しています。");
@@ -144,14 +133,17 @@ const LoginScreen = ({navigation}) => {
             <Text style={{ fontWeight: "400" }}>新規登録</Text>
           </CustomActionButton>
         </View>
-
       </View>
-      <View style={{ flex: 1,alignItems:'center',justifyContent:'space-between',marginTop:50}}>
-        <TouchableOpacity 
-          onPress={() => navigation.navigate("TermsScreen")}
-        
-        >
-          <Text style={{color:"#009bc6"}}>利用規約(必読)</Text>
+      <View
+        style={{
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "space-between",
+          marginTop: 50,
+        }}
+      >
+        <TouchableOpacity onPress={() => navigation.navigate("TermsScreen")}>
+          <Text style={{ color: "#009bc6" }}>利用規約(必読)</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -163,7 +155,7 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop:10
+    marginTop: 10,
     // backgroundColor: colors.bgMain,
     // backgroundColor: "#7acbe1",
   },

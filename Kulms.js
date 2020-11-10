@@ -9,7 +9,7 @@ import LoadingScreen from "./src/screens/AppSwitchNavigator/LoadingScreen";
 import WelcomeScreen from "./src/screens/AppSwitchNavigator/WelcomeScreen";
 import CustomDrawerComponent from "./src/screens/DrawerNavigator/CustomDrawerComponent";
 import SplashScreen from "./src/screens/SplashScreen";
-import  firebase from "firebase/app";
+import firebase from "firebase/app";
 import "firebase/auth";
 
 import { useSelector } from "react-redux";
@@ -41,25 +41,25 @@ const KulmsHooks = () => {
     <NavigationContainer>
       {!auth.isSignedIn ? (
         <Stack.Navigator
-          screenOptions={({route})=>({
+          screenOptions={({ route }) => ({
             headerStyle: {
               // backgroundColor: colors.bgMain,
             },
             headerTintColor: "black",
             // headerTitle: "ログイン・新規登録",
             headerTitle: () => {
-        switch (route.name) {
-          case "LoginScreen":
-            return <Text style={{fontWeight:'500'}}>
-            ログイン・新規登録
-            </Text>
-          case "TermsScreen":
-            return <Text   style={{fontWeight:'500'}}>
-            利用規約
-            </Text>
-        }
-            }
-            })}
+              switch (route.name) {
+                case "LoginScreen":
+                  return (
+                    <Text style={{ fontWeight: "500" }}>
+                      ログイン・新規登録
+                    </Text>
+                  );
+                case "TermsScreen":
+                  return <Text style={{ fontWeight: "500" }}>利用規約</Text>;
+              }
+            },
+          })}
         >
           <Stack.Screen
             name="WelcomeScreen"
@@ -71,7 +71,7 @@ const KulmsHooks = () => {
             component={LoginScreen}
             options={{ headerBackTitleVisible: false }}
           />
-           <Stack.Screen
+          <Stack.Screen
             name="TermsScreen"
             component={TermsScreen}
             options={{ headerBackTitleVisible: false }}
@@ -127,7 +127,9 @@ const getHeaderTitle = (route) => {
 const HomeStackNavigator = ({ navigation }) => (
   <Stack.Navigator
     screenOptions={{
-      headerStyle: { backgroundColor: "white", height: 70 },
+      headerStyle: {
+        backgroundColor: "white",
+      },
       headerTintColor: "black",
       headerLeft: () => (
         <Ionicons

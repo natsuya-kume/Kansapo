@@ -1,3 +1,4 @@
+// 科目編集画面のコンポーネント
 import React, { Component, useEffect, useState } from "react";
 import {
   StyleSheet,
@@ -34,9 +35,11 @@ const EditSubject = (props) => {
   const [classroom, setClassroom] = useState(props.editData.classroom);
   const [memo, setMemo] = useState(props.editData.memo);
   const [count, setCount] = useState(0);
+  // const [count,setCount]=useState(props.editData.absentCount)
   const user = useSelector((state) => state.auth.currentUser);
   const dispatch = useDispatch();
 
+  // シラバスを開く関数
   const openSyllabus = () => {
     Linking.openURL(props.editData.syllabus).then((supported) => {
       if (!supported) {
@@ -47,6 +50,7 @@ const EditSubject = (props) => {
     });
   };
 
+  // 科目を消す関数
   const deleteSubject = async (editData) => {
     const editDataKey = editData.key;
     try {
@@ -62,6 +66,7 @@ const EditSubject = (props) => {
     }
   };
 
+  // 科目教室を保存する関数
   const saveClassroom = async (classroom, editData) => {
     const editDataKey = editData.key;
 
@@ -78,6 +83,7 @@ const EditSubject = (props) => {
     }
   };
 
+  // メモを保存する関数
   const saveMemo = async (memo, editData) => {
     const editDataKey = editData.key;
 
@@ -94,6 +100,7 @@ const EditSubject = (props) => {
     }
   };
 
+  // 欠席回数を保存する関数
   const saveAbsentCount = async (count, editData) => {
     const editDataKey = editData.key;
 
@@ -110,33 +117,41 @@ const EditSubject = (props) => {
     }
   };
 
+  // 入力された教室情報を取得
   const getRoomInfo = (classroom) => {
     setClassroom(classroom);
   };
 
+  // 入力されたメモ情報を取得
   const getMemoInfo = (memo) => {
     setMemo(memo);
   };
 
+  // +ボタンが押された時の関数
   const increment = () => {
     setCount(count + 1);
   };
 
+  // −ボタンが押された時の関数
   const decrement = () => {
-    setCount(count - 1);
+    if (count > 0) {
+      setCount(count - 1);
+    } else {
+      return 0;
+    }
   };
 
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={props.nav} style={styles.closeButton}>
         <View>
-          <AntDesign name="close" size={30} />
+          <AntDesign name="close" size={30} style={{ borderRadius: 50 }} />
         </View>
       </TouchableOpacity>
+      <View>
+        <Text style={styles.title}>授業の編集</Text>
+      </View>
       <ScrollView>
-        <View>
-          <Text style={styles.title}>授業の編集</Text>
-        </View>
         <View style={styles.infoContainer}>
           <Text style={styles.infoTitle}>授業名：{props.editData.subject}</Text>
         </View>
@@ -204,7 +219,11 @@ const EditSubject = (props) => {
         </View>
         <View style={styles.editClassroomContaimer}>
           <Text style={styles.infoTitle}>欠席回数：</Text>
+          {/* {props.editData.absentCount === null ? ( */}
           <Text style={styles.infoTitle}>{count}</Text>
+          {/* ) : (
+            <Text style={styles.infoTitle}>{props.editData.absentCount}</Text>
+          )} */}
           <Segment style={{ backgroundColor: "white" }}>
             <Button
               first
@@ -248,7 +267,7 @@ const EditSubject = (props) => {
             Toast.show({
               text: "削除しました",
               buttonText: "OK",
-              position: "top",
+              position: "bottom",
             })
           }
         >
@@ -321,7 +340,6 @@ const styles = StyleSheet.create({
     width: 180,
   },
   deleteButton: {
-    // width: 100,
     height: 50,
     backgroundColor: "#f69679",
     paddingHorizontal: 5,
@@ -333,10 +351,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   syllabusButton: {
-    // width: 100,
     height: 50,
     backgroundColor: "#7acbe1",
-    // marginHorizontal: 20,
     borderRadius: 30,
     alignItems: "center",
     justifyContent: "center",
@@ -348,7 +364,9 @@ const styles = StyleSheet.create({
   saveButton: {
     width: 40,
     height: 40,
-    backgroundColor: "#7acbe1",
+    // backgroundColor: "#7acbe1",
+    borderColor: "black",
+    borderWidth: 1,
     borderRadius: 30,
     alignItems: "center",
     justifyContent: "center",

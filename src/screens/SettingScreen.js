@@ -10,7 +10,7 @@ class SettingScreen extends React.Component {
   signOut = async () => {
     try {
       await firebase.auth().signOut();
-      // this.props.navigation.navigate("WelcomeScreen");
+
       this.props.signOut();
     } catch (error) {
       alert("Unable to sign out right now.");
@@ -19,15 +19,8 @@ class SettingScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity
-          // onPress={() => this.props.navigation.navigate("WelcomeScreen")}
-          onPress={this.signOut}
-        >
-          <View
-            style={styles.button}
-            title="Sign Up"
-            // onPress={() => this.props.navigation.navigate("WelcomeScreen")}
-          >
+        <TouchableOpacity onPress={this.signOut}>
+          <View style={styles.button} title="Sign Up">
             <Text style={{ fontWeight: "400" }}>Log Out</Text>
           </View>
         </TouchableOpacity>

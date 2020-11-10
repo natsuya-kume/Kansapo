@@ -12,6 +12,7 @@ import {
 import { loadSelectedSubjects } from "../redux/actions";
 import { ScrollView } from "react-native-gesture-handler";
 const ITEM_WIDTH = Dimensions.get("window").width;
+const ITEM_HEIGHT = Dimensions.get("window").height;
 import { snapshotToArray } from "../helpers/FirebaseHelpers";
 import SubjectsModal from "../components/SubjectsModal";
 import Modal from "react-native-modal";
@@ -21,10 +22,12 @@ import firebase from "firebase/app";
 import EditSubjectModal from "../components/EditSubjectModal";
 
 const Home = (props) => {
+  // 授業リストモーダルの管理
   const [isSubjectsModal, setIsSubjectsModal] = useState(false);
+  // 授業編集モーダルの管理
   const [isEditModal, setIsEditModal] = useState(false);
-  // const [TableId, setTableId] = useState(null);
 
+  // 編集データの管理
   const [toEditData, setToEditData] = useState(null);
 
   const dispatch = useDispatch();
@@ -45,10 +48,7 @@ const Home = (props) => {
     fetchData();
   }, [user, dispatch, !isEditModal]);
 
-  // const getTableId = (index) => {
-  //   setTableId(index);
-  // };
-
+  // 授業編集モーダルが開かれる時の関数
   const toggleEditModal = (item, index) => {
     setIsEditModal(!isEditModal);
     // index番号があるときだけセットする　→editModalを閉じたときはセットしない
@@ -57,19 +57,23 @@ const Home = (props) => {
     }
   };
 
+  // 授業リストモーダルが押された時の関数
   const toggleSubjectsModal = () => {
     setIsSubjectsModal(!isSubjectsModal);
   };
 
+  // テーブルに授業を描画する関数
   const renderSubject = (item, index) => {
     const map = subjects.map((a) => {
-      // (a.tableId===index)
       if (a.subjectId === index) {
         table[index].subject.push(a);
         if (table[index].subject.length === 1) {
           return (
             <View>
-              <Text key={index} style={{ marginTop: 3 }}>
+              <Text
+                key={index}
+                style={{ marginTop: 3, fontWeight: "500", fontSize: 14 }}
+              >
                 {a.subject}
               </Text>
               {a.classroom === "" || !a.classroom ? null : (
@@ -77,7 +81,7 @@ const Home = (props) => {
                   key={item}
                   style={{
                     marginTop: 10,
-                    backgroundColor: "#f69679",
+                    // backgroundColor: "#f69679",
                     marginHorizontal: 3,
                   }}
                 >
@@ -141,7 +145,6 @@ const Home = (props) => {
 
   const time = ["1", "2", "3", "4", "5", "6"];
   return (
-    // <TimeTable />
     <View style={styles.container}>
       {/* <ScrollView> */}
       <View style={{ flexDirection: "row" }}>
@@ -210,7 +213,6 @@ const Home = (props) => {
         <Modal isVisible={isEditModal}>
           <EditSubjectModal
             nav={toggleEditModal}
-            // getTableId={TableId}
             // onPress={deleteSubject}
             editData={toEditData}
           />
@@ -219,10 +221,7 @@ const Home = (props) => {
 
       <SafeAreaView style={{ flex: 1 }}>
         <Modal isVisible={isSubjectsModal}>
-          <SubjectsModal
-            nav={toggleSubjectsModal}
-            // getTableId={TableId}
-          />
+          <SubjectsModal nav={toggleSubjectsModal} />
         </Modal>
       </SafeAreaView>
     </View>
@@ -255,7 +254,7 @@ const styles = StyleSheet.create({
     margin: 1,
     backgroundColor: "#7acbe1",
     // backgroundColor: colors.logoColor,
-    height: ITEM_WIDTH / 4.4,
+    height: ITEM_WIDTH / 4.5,
     // 数字の中央寄せ
     lineHeight: ITEM_WIDTH / 4.4,
   },
@@ -264,7 +263,7 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     backgroundColor: "snow",
     width: ITEM_WIDTH / 6.6,
-    height: ITEM_WIDTH / 4.4,
+    height: ITEM_WIDTH / 4.5,
   },
   alert: {
     flex: 2,
