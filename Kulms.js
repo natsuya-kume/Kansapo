@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 
 import HomeScreen from "./src/screens/HomeScreen";
-import TestScreen from "./src/screens/TestScreen";
+import PublicScreen from "./src/screens/PublicScreen";
 import SettingScreen from "./src/screens/SettingScreen";
 import LoginScreen from "./src/screens/LoginScreen";
 import LoadingScreen from "./src/screens/AppSwitchNavigator/LoadingScreen";
@@ -14,16 +14,25 @@ import "firebase/auth";
 
 import { useSelector } from "react-redux";
 
-import { NavigationContainer } from "@react-navigation/native";
+import {
+  getFocusedRouteNameFromRoute,
+  NavigationContainer,
+} from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import colors from "./assets/colors";
-import { Entypo, Ionicons, MaterialIcons } from "@expo/vector-icons";
+import {
+  Entypo,
+  FontAwesome5,
+  Ionicons,
+  MaterialIcons,
+} from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { DrawerItemList } from "@react-navigation/drawer";
 import useAuthenticateUser from "./src/hooks/useAuthenticateUser";
 import TermsScreen from "./src/screens/AppSwitchNavigator/TermsScreen";
+import { round } from "react-native-reanimated";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -87,33 +96,49 @@ const KulmsHooks = () => {
 const HomeTabNavigator = () => (
   <Tab.Navigator
     screenOptions={({ route }) => ({
-      tabBarIcon: ({ tintColor }) => {
+      tabBarIcon: ({ color, focused, size }) => {
         switch (route.name) {
           case "時間割":
-            return <AntDesign name="table" size={30} color={tintColor} />;
-          case "設定":
-            return <Ionicons name="ios-settings" size={30} color={tintColor} />;
+            return <AntDesign name="table" size={30} color={color} />;
+          case "公式":
+            return <FontAwesome5 name="school" size={24} color={color} />;
         }
       },
     })}
     tabBarOptions={{
-      activeTintColor: colors.bgPrimary,
+      activeTintColor: "black",
+      tabStyle: {
+        backgroundColor: "#fff8cd",
+      },
     }}
   >
     <Tab.Screen name="時間割" component={HomeScreen} />
     <Tab.Screen
-      options={{ tabBarLabel: "設定" }}
-      name="設定"
-      component={TestScreen}
+      options={{ tabBarLabel: "公式" }}
+      name="公式"
+      component={PublicScreen}
     />
   </Tab.Navigator>
 );
 
-const getHeaderTitle = (route) => {
-  const routeName = route.state
-    ? route.state.routes[route.state.index].name
-    : "Home";
+// const getHeaderTitle = (route) => {
+//   const routeName = route.state
+//     ? route.state.routes[route.state.index].name
+//     : "Home";
 
+//   switch (routeName) {
+//     // case "利用規約":
+//     //   return "Kulms";
+//     // case "Setting":
+//     //   return "Kulms";
+//     default:
+//       return "Kulms";
+//   }
+// };
+
+const getHeaderTitle = (route) => {
+  const routeName = getFocusedRouteNameFromRoute(route);
+  const hideOnScreens = ["HomeTabNavigator"];
   switch (routeName) {
     // case "利用規約":
     //   return "Kulms";
@@ -122,13 +147,15 @@ const getHeaderTitle = (route) => {
     default:
       return "Kulms";
   }
+  // if (hideOnScreens.indexOf(routeName) > -1) return false;
+  // return true;
 };
 
 const HomeStackNavigator = ({ navigation }) => (
   <Stack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: "white",
+        backgroundColor: "#fff8cd",
       },
       headerTintColor: "black",
       headerLeft: () => (
@@ -173,19 +200,19 @@ const AppDrawerNavigator = ({ navigation }) => (
       }}
     />
 
-    {/* <Drawer.Screen
+    <Drawer.Screen
       options={{
         drawerIcon: () => <Ionicons name="ios-document" size={24} />,
       }}
-      name="利用規約"
+      name="関大LMS(公式)"
       component={TermsScreen}
-    /> */}
+    />
 
     <Drawer.Screen
       options={{
-        drawerIcon: () => <Ionicons name="ios-settings" size={24} />,
+        drawerIcon: () => <AntDesign name="logout" size={20} />,
       }}
-      name="設定"
+      name="ログアウト"
       component={SettingScreen}
     />
   </Drawer.Navigator>

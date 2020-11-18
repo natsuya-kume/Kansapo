@@ -9,7 +9,6 @@ class LoadingScreen extends React.Component {
   componentDidMount() {
     this.checkIfLoggedIn();
   }
-
   checkIfLoggedIn = () => {
     this.unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (user) {

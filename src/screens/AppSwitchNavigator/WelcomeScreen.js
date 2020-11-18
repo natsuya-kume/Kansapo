@@ -14,7 +14,7 @@ const WelcomeScreen = () => {
       style={{
         flex: 1,
         // backgroundColor: colors.bgMain,
-        // backgroundColor: "#7acbe1",
+        backgroundColor: "#fff8cd",
       }}
     >
       <View
@@ -25,12 +25,7 @@ const WelcomeScreen = () => {
           justifyContent: "center",
         }}
       >
-        <AntDesign
-          name="table"
-          size={150}
-          // color={colors.logoColor}
-          color="#7acbe1"
-        />
+        <AntDesign name="table" size={150} color="#99cc65" />
         <Text style={{ fontSize: 50, fontWeight: "100" }}>KULMS</Text>
       </View>
       <View

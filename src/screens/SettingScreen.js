@@ -21,7 +21,7 @@ class SettingScreen extends React.Component {
       <View style={styles.container}>
         <TouchableOpacity onPress={this.signOut}>
           <View style={styles.button} title="Sign Up">
-            <Text style={{ fontWeight: "400" }}>Log Out</Text>
+            <Text style={{ fontWeight: "400" }}>ログアウト</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: colors.bgMain,
+    backgroundColor: "#fff8cd",
   },
   button: {
     height: 50,

@@ -20,7 +20,6 @@ import {
   Icon,
   Textarea,
   Toast,
-  Segment,
   Button,
 } from "native-base";
 
@@ -34,10 +33,27 @@ import { useSelector, useDispatch } from "react-redux";
 const EditSubject = (props) => {
   const [classroom, setClassroom] = useState(props.editData.classroom);
   const [memo, setMemo] = useState(props.editData.memo);
-  const [count, setCount] = useState(0);
-  // const [count,setCount]=useState(props.editData.absentCount)
+  const [absentCount, setAbsentCount] = useState(props.editData.absentCount);
   const user = useSelector((state) => state.auth.currentUser);
   const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   const saveAbsentCount = async (count, editData) => {
+  //     const editDataKey = editData.key;
+  //     try {
+  //       await firebase
+  //         .database()
+  //         .ref("selectedSubject")
+  //         .child(user.uid)
+  //         .child(editDataKey)
+  //         .child("name")
+  //         .update({ absentCount: 0 });
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   saveAbsentCount();
+  // }, []);
 
   // シラバスを開く関数
   const openSyllabus = () => {
@@ -101,7 +117,7 @@ const EditSubject = (props) => {
   };
 
   // 欠席回数を保存する関数
-  const saveAbsentCount = async (count, editData) => {
+  const saveAbsentCount = async (absentCount, editData) => {
     const editDataKey = editData.key;
 
     try {
@@ -111,7 +127,7 @@ const EditSubject = (props) => {
         .child(user.uid)
         .child(editDataKey)
         .child("name")
-        .update({ absentCount: count });
+        .update({ absentCount: absentCount });
     } catch (error) {
       console.log(error);
     }
@@ -127,18 +143,8 @@ const EditSubject = (props) => {
     setMemo(memo);
   };
 
-  // +ボタンが押された時の関数
-  const increment = () => {
-    setCount(count + 1);
-  };
-
-  // −ボタンが押された時の関数
-  const decrement = () => {
-    if (count > 0) {
-      setCount(count - 1);
-    } else {
-      return 0;
-    }
+  const getAbsentInfo = (absentCount) => {
+    setAbsentCount(absentCount);
   };
 
   return (
@@ -219,33 +225,19 @@ const EditSubject = (props) => {
         </View>
         <View style={styles.editClassroomContaimer}>
           <Text style={styles.infoTitle}>欠席回数：</Text>
-          {/* {props.editData.absentCount === null ? ( */}
-          <Text style={styles.infoTitle}>{count}</Text>
-          {/* ) : (
-            <Text style={styles.infoTitle}>{props.editData.absentCount}</Text>
-          )} */}
-          <Segment style={{ backgroundColor: "white" }}>
-            <Button
-              first
-              style={{
-                marginLeft: 20,
-                paddingHorizontal: 20,
-                borderColor: "black",
-              }}
-              onPress={increment}
-            >
-              <Text>+</Text>
-            </Button>
-            <Button
-              last
-              style={{ paddingHorizontal: 20, borderColor: "black" }}
-              onPress={decrement}
-            >
-              <Text>−</Text>
-            </Button>
-          </Segment>
+          <View>
+            <Form style={styles.searchInput}>
+              <Item>
+                <Input
+                  keyboardType="number-pad"
+                  value={absentCount}
+                  onChangeText={getAbsentInfo}
+                />
+              </Item>
+            </Form>
+          </View>
           <TouchableOpacity
-            onPress={() => saveAbsentCount(count, props.editData)}
+            onPress={() => saveAbsentCount(absentCount, props.editData)}
             onPressIn={() =>
               Toast.show({
                 text: "欠席回数を保存しました",
@@ -296,6 +288,8 @@ const styles = StyleSheet.create({
     height: 550,
     borderRadius: 10,
     paddingVertical: 15,
+    // padding: 15,
+    paddingHorizontal: 20,
   },
   closeButton: {
     position: "absolute",
@@ -311,7 +305,6 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     marginTop: 20,
-    marginHorizontal: 20,
   },
   infoTitle: {
     fontSize: 20,
@@ -334,7 +327,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     marginTop: 20,
-    marginHorizontal: 20,
   },
   textArea: {
     width: 180,
@@ -352,7 +344,8 @@ const styles = StyleSheet.create({
   },
   syllabusButton: {
     height: 50,
-    backgroundColor: "#7acbe1",
+    // backgroundColor: "#7acbe1",
+    backgroundColor: "#fff8cd",
     borderRadius: 30,
     alignItems: "center",
     justifyContent: "center",
@@ -376,6 +369,5 @@ const styles = StyleSheet.create({
     // flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
-    marginHorizontal: 10,
   },
 });

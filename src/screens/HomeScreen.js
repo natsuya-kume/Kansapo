@@ -69,16 +69,16 @@ const Home = (props) => {
         table[index].subject.push(a);
         if (table[index].subject.length === 1) {
           return (
-            <View>
+            <View key={index}>
               <Text
-                key={index}
+                key={a.subject}
                 style={{ marginTop: 3, fontWeight: "500", fontSize: 14 }}
               >
                 {a.subject}
               </Text>
               {a.classroom === "" || !a.classroom ? null : (
                 <Text
-                  key={item}
+                  key={a.classroom}
                   style={{
                     marginTop: 10,
                     // backgroundColor: "#f69679",
@@ -148,27 +148,31 @@ const Home = (props) => {
     <View style={styles.container}>
       {/* <ScrollView> */}
       <View style={{ flexDirection: "row" }}>
-        <FlatList
-          data={blank}
-          keyExtractor={(item, index) => index.toString()}
-          numColumns={1}
-          renderItem={({ item }) => (
-            <View>
-              <Text style={styles.blank}>{item}</Text>
-            </View>
-          )}
-        />
-        <FlatList
-          data={period}
-          keyExtractor={(item, index) => index.toString()}
-          numColumns={1}
-          horizontal
-          renderItem={({ item }) => (
-            <View>
-              <Text style={styles.period}>{item}</Text>
-            </View>
-          )}
-        />
+        <View>
+          <FlatList
+            data={blank}
+            keyExtractor={(item, index) => index.toString()}
+            numColumns={1}
+            renderItem={({ item }) => (
+              <View>
+                <Text style={styles.blank}>{item}</Text>
+              </View>
+            )}
+          />
+        </View>
+        <View>
+          <FlatList
+            data={period}
+            keyExtractor={(item, index) => index.toString()}
+            numColumns={1}
+            horizontal
+            renderItem={({ item }) => (
+              <View>
+                <Text style={styles.period}>{item}</Text>
+              </View>
+            )}
+          />
+        </View>
       </View>
       <View style={{ flexDirection: "row" }}>
         <View>
@@ -232,42 +236,40 @@ export default Home;
 
 const styles = StyleSheet.create({
   container: {
-    paddingLeft: 5,
+    paddingLeft: 4,
     paddingRight: 5,
     marginTop: 5,
   },
   blank: {
-    width: 10,
+    width: 13,
     margin: 1,
-    backgroundColor: "#7acbe1",
-    // backgroundColor: colors.logoColor,
+    backgroundColor: "#99cc65",
   },
   period: {
     margin: 1,
     textAlign: "center",
     width: ITEM_WIDTH / 6.6,
-    backgroundColor: "#7acbe1",
-    // backgroundColor: colors.logoColor,
+    backgroundColor: "#99cc65",
   },
   time: {
-    width: 10,
+    width: 13,
     margin: 1,
-    backgroundColor: "#7acbe1",
-    // backgroundColor: colors.logoColor,
-    height: ITEM_WIDTH / 4.5,
-    // 数字の中央寄せ
-    lineHeight: ITEM_WIDTH / 4.4,
+    backgroundColor: "#99cc65",
+    height: ITEM_HEIGHT / 8,
+    textAlign: "center",
+    lineHeight: ITEM_HEIGHT / 8,
   },
   table: {
     margin: 1,
-    resizeMode: "cover",
-    backgroundColor: "snow",
+    // resizeMode: "cover",
+    // backgroundColor: "snow",
+    backgroundColor: "#dddddd",
     width: ITEM_WIDTH / 6.6,
-    height: ITEM_WIDTH / 4.5,
+    height: ITEM_HEIGHT / 8,
   },
-  alert: {
-    flex: 2,
-    justifyContent: "space-around",
-    alignItems: "center",
-  },
+  // alert: {
+  //   flex: 2,
+  //   justifyContent: "space-around",
+  //   alignItems: "center",
+  // },
 });
