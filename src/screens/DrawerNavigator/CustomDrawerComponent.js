@@ -21,13 +21,12 @@ class CustomDrawerComponent extends React.Component {
         <View
           style={{
             height: 150,
-            backgroundColor: "#fff8cd",
             alignItems: "center",
             justifyContent: "center",
             paddingTop: (Platform.OS = "android" ? 20 : 0),
           }}
         >
-          <AntDesign name="table" size={100} color="#99cc65" />
+          <AntDesign name="table" size={100} color="blue" />
           <Text style={{ fontSize: 24, fontWeight: "100" }}>KULMS</Text>
         </View>
         <DrawerItemList {...this.props} />

@@ -143,7 +143,7 @@ const LoginScreen = ({ navigation }) => {
         }}
       >
         <TouchableOpacity onPress={() => navigation.navigate("TermsScreen")}>
-          <Text style={{ color: "#009bc6" }}>利用規約(必読)</Text>
+          <Text style={{ color: "#009bc6", fontSize: 15 }}>利用規約(必読)</Text>
         </TouchableOpacity>
       </View>
     </View>

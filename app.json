@@ -15,14 +15,16 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "buildNumber": "1",
+      "bundleIdentifier": "org.swallow.rnsample.app"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "android": {
       "permissions": ["READ_EXTERNAL_STORAGE", "WRITE_EXTERNAL_STORAGE"],
-      "package": "com.ivanzapata.page"
+      "package": "org.swallow.rnsample.app"
     }
   }
 }

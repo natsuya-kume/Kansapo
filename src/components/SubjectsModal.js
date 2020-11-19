@@ -153,6 +153,7 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     marginTop: 5,
+    marginBottom: 20,
     justifyContent: "space-between",
     flexDirection: "row",
     alignItems: "center",

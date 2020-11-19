@@ -28,7 +28,7 @@ const ListItem = ({ item, onPress, closeModal }) => {
     <View style={styles.subjectsContainer}>
       <TouchableOpacity onPress={openSyllabus}>
         <View>
-          <Entypo name="open-book" size={20} color="#99cc65" />
+          <Entypo name="open-book" size={20} color="skyblue" />
         </View>
       </TouchableOpacity>
       <View style={styles.subjectsInfo}>
@@ -64,9 +64,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     flex: 1,
     borderBottomWidth: 1,
-    // borderBottomColor: "#7acbe1",
-    borderBottomColor: "#99cc65",
-    marginTop: 20,
+    borderBottomColor: "skyblue",
+    // marginTop: 10,
   },
   subjectsInfo: {
     paddingLeft: 5,
@@ -79,8 +78,7 @@ const styles = StyleSheet.create({
   button: {
     width: 50,
     height: 40,
-    // backgroundColor: "#7acbe1",
-    backgroundColor: "#99cc65",
+    backgroundColor: "skyblue",
     borderRadius: 50,
     alignItems: "center",
     justifyContent: "center",

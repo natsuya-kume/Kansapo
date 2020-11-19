@@ -107,9 +107,10 @@ const HomeTabNavigator = () => (
     })}
     tabBarOptions={{
       activeTintColor: "black",
-      tabStyle: {
-        backgroundColor: "#fff8cd",
-      },
+      // tabStyle: {
+      // backgroundColor: "#fff8cd",
+      // backgroundColor: "blue",
+      // },
     }}
   >
     <Tab.Screen name="時間割" component={HomeScreen} />
@@ -154,9 +155,9 @@ const getHeaderTitle = (route) => {
 const HomeStackNavigator = ({ navigation }) => (
   <Stack.Navigator
     screenOptions={{
-      headerStyle: {
-        backgroundColor: "#fff8cd",
-      },
+      // headerStyle: {
+      //   backgroundColor: "#fff8cd",
+      // },
       headerTintColor: "black",
       headerLeft: () => (
         <Ionicons
@@ -200,13 +201,13 @@ const AppDrawerNavigator = ({ navigation }) => (
       }}
     />
 
-    <Drawer.Screen
+    {/* <Drawer.Screen
       options={{
         drawerIcon: () => <Ionicons name="ios-document" size={24} />,
       }}
       name="関大LMS(公式)"
       component={TermsScreen}
-    />
+    /> */}
 
     <Drawer.Screen
       options={{

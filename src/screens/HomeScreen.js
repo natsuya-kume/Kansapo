@@ -243,18 +243,18 @@ const styles = StyleSheet.create({
   blank: {
     width: 13,
     margin: 1,
-    backgroundColor: "#99cc65",
+    backgroundColor: "skyblue",
   },
   period: {
     margin: 1,
     textAlign: "center",
     width: ITEM_WIDTH / 6.6,
-    backgroundColor: "#99cc65",
+    backgroundColor: "skyblue",
   },
   time: {
     width: 13,
     margin: 1,
-    backgroundColor: "#99cc65",
+    backgroundColor: "skyblue",
     height: ITEM_HEIGHT / 8,
     textAlign: "center",
     lineHeight: ITEM_HEIGHT / 8,

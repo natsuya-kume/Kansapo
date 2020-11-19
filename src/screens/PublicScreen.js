@@ -1,4 +1,5 @@
 import React from "react";
+import { StyleSheet } from "react-native";
 import {
   Container,
   Header,
@@ -49,13 +50,13 @@ const PublicScreen = () => {
             </Left> */}
           <Body>
             <Text>関大LMS(公式)</Text>
-            {/* <Text note numberOfLines={1}>
-                Its time to build a difference . .
-              </Text> */}
+            <Text note numberOfLines={1}>
+              KU Learning Management System
+            </Text>
           </Body>
           <Right>
             <Button transparent onPress={openKulms}>
-              <Text style={{ color: "#99cc65", fontWeight: "500" }}>
+              <Text style={{ color: "skyblue", fontWeight: "500" }}>
                 サイトへ
               </Text>
             </Button>
@@ -63,17 +64,17 @@ const PublicScreen = () => {
         </ListItem>
         <ListItem thumbnail>
           {/* <Left>
-              <Thumbnail square source={{ uri: "Image URL" }} />
-            </Left> */}
+            <Thumbnail square source={{ uri: "Image URL" }} />
+          </Left> */}
           <Body>
             <Text>インフォメーションシステム</Text>
-            {/* <Text note numberOfLines={1}>
-                Its time to build a difference . .
-              </Text> */}
+            <Text note numberOfLines={1}>
+              InformationSystem
+            </Text>
           </Body>
           <Right>
             <Button transparent onPress={openInfoSystem}>
-              <Text style={{ color: "#99cc65", fontWeight: "500" }}>
+              <Text style={{ color: "skyblue", fontWeight: "500" }}>
                 サイトへ
               </Text>
             </Button>
@@ -84,5 +85,15 @@ const PublicScreen = () => {
     // </Container>
   );
 };
+// const styles = StyleSheet.create({
+//   button: {
+//     width: 50,
+//     height: 40,
+//     backgroundColor: "skyblue",
+//     borderRadius: 50,
+//     alignItems: "center",
+//     justifyContent: "center",
+//   },
+// });
 
 export default PublicScreen;
