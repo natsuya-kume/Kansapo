@@ -1,14 +1,15 @@
 // 利用規約を表示するスクリーン
 import React, { Component } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Dimensions } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
+const ITEM_HEIGHT = Dimensions.get("window").height;
 
-const TermsScreen = () => {
+const TermsScreen = ({ navigation }) => {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <View>
-          <Text style={styles.termText}>
+        <View style={{ marginTop: 10 }}>
+          <Text style={[styles.termText]}>
             この利用規約（以下，「本規約」といいます。）は、
             KULMS（以下，「本アプリ」といいます。）がこのウェブサイト上で提供するサービス
             （以下，「本サービス」といいます。）の利用条件を定めるものです。
@@ -124,7 +125,6 @@ const TermsScreen = () => {
             本アプリは，必要と判断した場合には，ユーザーに通知することなくいつでも本規約を変更することができるものとします。なお，本規約の変更後，本サービスの利用を開始した場合には，当該ユーザーは変更後の規約に同意したものとみなします。
           </Text>
         </View>
-
         <View style={styles.termContainer}>
           <Text style={styles.termTextTitle}>第10条（個人情報の取扱い）</Text>
           <Text style={styles.termText}>

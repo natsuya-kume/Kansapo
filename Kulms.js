@@ -3,8 +3,11 @@ import { View, StyleSheet, Text } from "react-native";
 
 import HomeScreen from "./src/screens/HomeScreen";
 import PublicScreen from "./src/screens/PublicScreen";
-import SettingScreen from "./src/screens/SettingScreen";
+import LogoutScreen from "./src/screens/LogoutScreen";
+import SignUpScreen from "./src/screens/SignUpScreen";
 import LoginScreen from "./src/screens/LoginScreen";
+import TermsDrawerScreen from "./src/screens/TermsDrawerScreen";
+import PrivacyPolicyScreen from "./src/screens/AppSwitchNavigator/PrivacyPolicyScreen";
 import LoadingScreen from "./src/screens/AppSwitchNavigator/LoadingScreen";
 import WelcomeScreen from "./src/screens/AppSwitchNavigator/WelcomeScreen";
 import CustomDrawerComponent from "./src/screens/DrawerNavigator/CustomDrawerComponent";
@@ -32,7 +35,6 @@ import { AntDesign } from "@expo/vector-icons";
 import { DrawerItemList } from "@react-navigation/drawer";
 import useAuthenticateUser from "./src/hooks/useAuthenticateUser";
 import TermsScreen from "./src/screens/AppSwitchNavigator/TermsScreen";
-import { round } from "react-native-reanimated";
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -58,14 +60,12 @@ const KulmsHooks = () => {
             // headerTitle: "ログイン・新規登録",
             headerTitle: () => {
               switch (route.name) {
+                case "SignUpScreen":
+                  return <Text style={{ fontWeight: "500" }}>新規登録</Text>;
                 case "LoginScreen":
-                  return (
-                    <Text style={{ fontWeight: "500" }}>
-                      ログイン・新規登録
-                    </Text>
-                  );
-                case "TermsScreen":
-                  return <Text style={{ fontWeight: "500" }}>利用規約</Text>;
+                  return <Text style={{ fontWeight: "500" }}>ログイン</Text>;
+                // case "TermsScreen":
+                //   return <Text style={{ fontWeight: "500" }}>利用規約</Text>;
               }
             },
           })}
@@ -74,6 +74,11 @@ const KulmsHooks = () => {
             name="WelcomeScreen"
             component={WelcomeScreen}
             options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="SignUpScreen"
+            component={SignUpScreen}
+            options={{ headerBackTitleVisible: false }}
           />
           <Stack.Screen
             name="LoginScreen"
@@ -106,7 +111,8 @@ const HomeTabNavigator = () => (
       },
     })}
     tabBarOptions={{
-      activeTintColor: "black",
+      // activeTintColor: "black",
+      activeTintColor: "#f67690",
       // tabStyle: {
       // backgroundColor: "#fff8cd",
       // backgroundColor: "blue",
@@ -141,8 +147,8 @@ const getHeaderTitle = (route) => {
   const routeName = getFocusedRouteNameFromRoute(route);
   const hideOnScreens = ["HomeTabNavigator"];
   switch (routeName) {
-    // case "利用規約":
-    //   return "Kulms";
+    case "TermsTabNavigator":
+      return "Kulms";
     // case "Setting":
     //   return "Kulms";
     default:
@@ -192,6 +198,10 @@ const HomeStackNavigator = ({ navigation }) => (
 const AppDrawerNavigator = ({ navigation }) => (
   <Drawer.Navigator
     drawerContent={(props) => <CustomDrawerComponent {...props} />}
+    // drawerContentOptions={{
+    //   // activeBackgroundColor: "pink",
+    //   activeTintColor: "#00a5dd",
+    // }}
   >
     <Drawer.Screen
       name="ホーム"
@@ -201,20 +211,28 @@ const AppDrawerNavigator = ({ navigation }) => (
       }}
     />
 
-    {/* <Drawer.Screen
+    <Drawer.Screen
+      options={({ route }) => ({
+        drawerIcon: () => <Ionicons name="ios-document" size={28} />,
+      })}
+      name="利用規約"
+      component={TermsDrawerScreen}
+    />
+
+    <Drawer.Screen
       options={{
-        drawerIcon: () => <Ionicons name="ios-document" size={24} />,
+        drawerIcon: () => <Ionicons name="ios-checkmark" size={30} />,
       }}
-      name="関大LMS(公式)"
-      component={TermsScreen}
-    /> */}
+      name="プライバシーポリシー"
+      component={PrivacyPolicyScreen}
+    />
 
     <Drawer.Screen
       options={{
         drawerIcon: () => <AntDesign name="logout" size={20} />,
       }}
       name="ログアウト"
-      component={SettingScreen}
+      component={LogoutScreen}
     />
   </Drawer.Navigator>
 );

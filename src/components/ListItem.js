@@ -8,9 +8,6 @@ import {
   Linking,
 } from "react-native";
 import { Toast } from "native-base";
-import { ScrollView } from "react-native-gesture-handler";
-import { SafeAreaView } from "react-navigation";
-import colors from "../../assets/colors";
 import { Entypo } from "@expo/vector-icons";
 
 const ListItem = ({ item, onPress, closeModal }) => {
@@ -65,7 +62,6 @@ const styles = StyleSheet.create({
     flex: 1,
     borderBottomWidth: 1,
     borderBottomColor: "skyblue",
-    // marginTop: 10,
   },
   subjectsInfo: {
     paddingLeft: 5,

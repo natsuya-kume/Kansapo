@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Form, Item, Input, Label, Icon } from "native-base";
-import colors from "../../assets/colors";
 import ListItem from "./ListItem";
 import { AntDesign } from "@expo/vector-icons";
 import firebase from "firebase/app";

@@ -15,23 +15,6 @@ const subjects = (state = initialState, action) => {
           (selectedSubject) => selectedSubject.name !== action.payload.name
         ),
       };
-    // case "ADD_SUBJECT":
-    //   return {
-    //     ...state,
-    //     selectedSubjects: [action.payload, ...state.selectedSubjects],
-    // selectedSubjects: action.payload,
-    // booksReading: [action.payload, ...state.booksReading],
-    //   };
-    // case "MARK_BOOK_AS_READ":
-    //   return {
-    //     ...state,
-    //     books: state.books.map((book) => {
-    //       if (book.name == action.payload.name) {
-    //         return { ...book, read: true };
-    //       }
-    //       return book;
-    //     }),
-    //   };
     default:
       return state;
   }

@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import { View, StyleSheet, Text, ActivityIndicator } from "react-native";
 import firebase from "firebase/app";
 import "firebase/auth";
-import colors from "../../../assets/colors";
 
 class LoadingScreen extends React.Component {
   componentDidMount() {
@@ -25,7 +24,7 @@ class LoadingScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <ActivityIndicator size="large" color={colors.logoColor} />
+        <ActivityIndicator size="large" color={skyblue} />
       </View>
     );
   }
@@ -38,6 +37,5 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: colors.bgMain,
   },
 });

@@ -42,9 +42,21 @@ const WelcomeScreen = () => {
             borderColor: colors.bgPrimary,
             marginBottom: 10,
           }}
+          onPress={() => navigation.navigate("SignUpScreen")}
+        >
+          <Text style={{ fontWeight: "100" }}>新規登録</Text>
+        </CustomActionButton>
+        <CustomActionButton
+          style={{
+            width: 200,
+            backgroundColor: "transparent",
+            borderWidth: 1,
+            borderColor: colors.bgPrimary,
+            marginBottom: 10,
+          }}
           onPress={() => navigation.navigate("LoginScreen")}
         >
-          <Text style={{ fontWeight: "100" }}>始める</Text>
+          <Text style={{ fontWeight: "100" }}>ログイン</Text>
         </CustomActionButton>
       </View>
     </View>

@@ -17,7 +17,7 @@
     "ios": {
       "supportsTablet": true,
       "buildNumber": "1",
-      "bundleIdentifier": "org.swallow.rnsample.app"
+      "bundleIdentifier": "com.timetable.TimeTableApp"
     },
     "web": {
       "favicon": "./assets/favicon.png"

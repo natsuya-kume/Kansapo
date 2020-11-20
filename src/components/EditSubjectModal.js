@@ -22,8 +22,6 @@ import {
   Toast,
   Button,
 } from "native-base";
-
-import colors from "../../assets/colors";
 import { AntDesign, Entypo } from "@expo/vector-icons";
 import firebase from "firebase/app";
 import { snapshotToArray } from "../helpers/FirebaseHelpers";
@@ -288,7 +286,6 @@ const styles = StyleSheet.create({
     height: 550,
     borderRadius: 10,
     paddingVertical: 15,
-    // padding: 15,
     paddingHorizontal: 20,
   },
   closeButton: {
@@ -309,10 +306,8 @@ const styles = StyleSheet.create({
   infoTitle: {
     fontSize: 20,
     fontWeight: "100",
-    color: colors.txtWhite,
   },
   searchInput: {
-    // marginTop: 5,
     justifyContent: "space-between",
     flexDirection: "row",
     alignItems: "center",
@@ -333,7 +328,8 @@ const styles = StyleSheet.create({
   },
   deleteButton: {
     height: 50,
-    backgroundColor: "#f69679",
+    // backgroundColor: "#f69679",
+    backgroundColor: "pink",
     paddingHorizontal: 5,
     borderRadius: 30,
     alignItems: "center",
@@ -344,8 +340,7 @@ const styles = StyleSheet.create({
   },
   syllabusButton: {
     height: 50,
-    // backgroundColor: "#7acbe1",
-    backgroundColor: "#fff8cd",
+    backgroundColor: "skyblue",
     borderRadius: 30,
     alignItems: "center",
     justifyContent: "center",
@@ -357,7 +352,6 @@ const styles = StyleSheet.create({
   saveButton: {
     width: 40,
     height: 40,
-    // backgroundColor: "#7acbe1",
     borderColor: "black",
     borderWidth: 1,
     borderRadius: 30,
@@ -366,7 +360,6 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   bottom: {
-    // flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
   },

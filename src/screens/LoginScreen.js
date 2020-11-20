@@ -55,36 +55,6 @@ const LoginScreen = ({ navigation }) => {
     }
   };
 
-  const onSignUp = async () => {
-    if (email && password) {
-      setIsLoading(true);
-      try {
-        const response = await firebase
-          .auth()
-          .createUserWithEmailAndPassword(email, password);
-        if (response) {
-          setIsLoading(false);
-          firebase.auth().currentUser.sendEmailVerification();
-
-          const user = await firebase
-            .database()
-            .ref("users/")
-            .child(response.user.uid)
-            .set({ email: response.user.email, uid: response.user.uid });
-          dispatch({ type: "SIGN_IN", payload: response.user });
-        }
-      } catch (error) {
-        setIsLoading(false);
-
-        if (error.code == "auth/email-already-in-use") {
-          alert("そのユーザーは既に存在しています。");
-        }
-      }
-    } else {
-      alert("メールアドレスとパスワードを入力してください");
-    }
-  };
-
   return (
     <View style={styles.container}>
       {isLoading ? (
@@ -99,14 +69,10 @@ const LoginScreen = ({ navigation }) => {
             },
           ]}
         >
-          <ActivityIndicator
-            size="large"
-            // color={colors.logoColor}
-            color="#7acbe1"
-          />
+          <ActivityIndicator size="large" color="#7acbe1" />
         </View>
       ) : null}
-      <View style={{ flex: 1, justifyContent: "center" }}>
+      <View style={{ justifyContent: "center" }}>
         <View style={{ marginHorizontal: 5 }}>
           <Form>
             <Item floatingLabel>
@@ -126,25 +92,7 @@ const LoginScreen = ({ navigation }) => {
           >
             <Text style={{ fontWeight: "400" }}>ログイン</Text>
           </CustomActionButton>
-          <CustomActionButton
-            onPress={onSignUp}
-            style={[styles.loginButton, { borderColor: colors.bgPrimary }]}
-          >
-            <Text style={{ fontWeight: "400" }}>新規登録</Text>
-          </CustomActionButton>
         </View>
-      </View>
-      <View
-        style={{
-          flex: 1,
-          alignItems: "center",
-          justifyContent: "space-between",
-          marginTop: 50,
-        }}
-      >
-        <TouchableOpacity onPress={() => navigation.navigate("TermsScreen")}>
-          <Text style={{ color: "#009bc6", fontSize: 15 }}>利用規約(必読)</Text>
-        </TouchableOpacity>
       </View>
     </View>
   );
