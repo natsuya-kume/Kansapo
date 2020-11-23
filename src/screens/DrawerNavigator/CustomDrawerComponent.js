@@ -28,7 +28,7 @@ class CustomDrawerComponent extends React.Component {
           }}
         >
           <AntDesign name="table" size={100} color="blue" />
-          <Text style={{ fontSize: 24, fontWeight: "100" }}>KULMS</Text>
+          <Text style={{ fontSize: 24, fontWeight: "100" }}>Kanさぽ</Text>
         </View>
         <DrawerItemList {...this.props} />
         <View

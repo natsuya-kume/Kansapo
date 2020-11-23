@@ -24,7 +24,7 @@ const WelcomeScreen = () => {
         }}
       >
         <AntDesign name="table" size={150} color="blue" />
-        <Text style={{ fontSize: 50, fontWeight: "100" }}>KULMS</Text>
+        <Text style={{ fontSize: 50, fontWeight: "100" }}>Kanさぽ</Text>
       </View>
       <View
         style={{
@@ -44,7 +44,7 @@ const WelcomeScreen = () => {
           }}
           onPress={() => navigation.navigate("SignUpScreen")}
         >
-          <Text style={{ fontWeight: "100" }}>新規登録</Text>
+          <Text>新規登録</Text>
         </CustomActionButton>
         <CustomActionButton
           style={{
@@ -56,7 +56,7 @@ const WelcomeScreen = () => {
           }}
           onPress={() => navigation.navigate("LoginScreen")}
         >
-          <Text style={{ fontWeight: "100" }}>ログイン</Text>
+          <Text>ログイン</Text>
         </CustomActionButton>
       </View>
     </View>

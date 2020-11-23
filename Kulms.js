@@ -64,8 +64,8 @@ const KulmsHooks = () => {
                   return <Text style={{ fontWeight: "500" }}>新規登録</Text>;
                 case "LoginScreen":
                   return <Text style={{ fontWeight: "500" }}>ログイン</Text>;
-                // case "TermsScreen":
-                //   return <Text style={{ fontWeight: "500" }}>利用規約</Text>;
+                case "TermsScreen":
+                  return <Text style={{ fontWeight: "500" }}>利用規約</Text>;
               }
             },
           })}
@@ -148,11 +148,11 @@ const getHeaderTitle = (route) => {
   const hideOnScreens = ["HomeTabNavigator"];
   switch (routeName) {
     case "TermsTabNavigator":
-      return "Kulms";
+      return "Kanさぽ";
     // case "Setting":
     //   return "Kulms";
     default:
-      return "Kulms";
+      return "Kanさぽ";
   }
   // if (hideOnScreens.indexOf(routeName) > -1) return false;
   // return true;
