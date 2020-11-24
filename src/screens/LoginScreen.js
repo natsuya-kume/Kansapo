@@ -1,20 +1,12 @@
 // ログインする時のスクリーン
 import React, { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  ActivityIndicator,
-  TextInput,
-} from "react-native";
-import colors from "../../assets/colors";
-import { Form, Item, Input, Label, Icon } from "native-base";
+import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
+import { Form, Item, Input, Label } from "native-base";
 import CustomActionButton from "../components/CustomActionButton";
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
 import { useDispatch } from "react-redux";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -81,15 +73,15 @@ const LoginScreen = ({ navigation }) => {
             </Item>
             <Item floatingLabel>
               <Label>パスワード</Label>
-              <Input onChangeText={(password) => setPassword(password)} />
+              <Input
+                secureTextEntry
+                onChangeText={(password) => setPassword(password)}
+              />
             </Item>
           </Form>
         </View>
         <View style={styles.buttonContainer}>
-          <CustomActionButton
-            onPress={onSignIn}
-            style={[styles.loginButton, { borderColor: colors.bgPrimary }]}
-          >
+          <CustomActionButton onPress={onSignIn} style={styles.loginButton}>
             <Text style={{ fontWeight: "400" }}>ログイン</Text>
           </CustomActionButton>
         </View>
@@ -104,8 +96,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 10,
-    // backgroundColor: colors.bgMain,
-    // backgroundColor: "#7acbe1",
   },
   buttonContainer: {
     alignItems: "center",

@@ -1,7 +1,6 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet } from "react-native";
 import LottieView from "lottie-react-native";
-import colors from "../../assets/colors";
 
 const SplashScreen = (props) => {
   return (
@@ -21,7 +20,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "pink",
   },
 });
 

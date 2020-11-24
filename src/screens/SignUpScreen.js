@@ -1,7 +1,7 @@
 // ログインする時のスクリーン
 import React, { useState } from "react";
 import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
-import { Form, Item, Input, Label, Icon } from "native-base";
+import { Form, Item, Input, Label } from "native-base";
 import CustomActionButton from "../components/CustomActionButton";
 import firebase from "firebase/app";
 import "firebase/auth";
@@ -71,7 +71,10 @@ const SignUpScreen = ({ navigation }) => {
           </Item>
           <Item floatingLabel>
             <Label>パスワード</Label>
-            <Input onChangeText={(password) => setPassword(password)} />
+            <Input
+              secureTextEntry
+              onChangeText={(password) => setPassword(password)}
+            />
           </Item>
         </Form>
       </View>

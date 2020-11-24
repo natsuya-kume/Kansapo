@@ -1,30 +1,16 @@
 // 科目編集画面のコンポーネント
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
   View,
-  SafeAreaView,
   ScrollView,
-  FlatList,
   TouchableOpacity,
-  TextInput,
   Linking,
-  KeyboardAvoidingView,
 } from "react-native";
-import {
-  Form,
-  Item,
-  Input,
-  Label,
-  Icon,
-  Textarea,
-  Toast,
-  Button,
-} from "native-base";
+import { Form, Item, Input, Icon, Textarea, Toast } from "native-base";
 import { AntDesign, Entypo } from "@expo/vector-icons";
 import firebase from "firebase/app";
-import { snapshotToArray } from "../helpers/FirebaseHelpers";
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -34,24 +20,6 @@ const EditSubject = (props) => {
   const [absentCount, setAbsentCount] = useState(props.editData.absentCount);
   const user = useSelector((state) => state.auth.currentUser);
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   const saveAbsentCount = async (count, editData) => {
-  //     const editDataKey = editData.key;
-  //     try {
-  //       await firebase
-  //         .database()
-  //         .ref("selectedSubject")
-  //         .child(user.uid)
-  //         .child(editDataKey)
-  //         .child("name")
-  //         .update({ absentCount: 0 });
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   saveAbsentCount();
-  // }, []);
 
   // シラバスを開く関数
   const openSyllabus = () => {
@@ -74,7 +42,6 @@ const EditSubject = (props) => {
         .child(user.uid)
         .child(editDataKey)
         .remove();
-      // dispatch(deleteSubject(props));
     } catch (error) {
       console.log(error);
     }

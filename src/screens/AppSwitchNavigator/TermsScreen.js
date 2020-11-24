@@ -1,8 +1,7 @@
 // 利用規約を表示するスクリーン
-import React, { Component } from "react";
-import { View, Text, StyleSheet, Dimensions } from "react-native";
+import React from "react";
+import { View, Text, StyleSheet } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-const ITEM_HEIGHT = Dimensions.get("window").height;
 
 const TermsScreen = ({ navigation }) => {
   return (

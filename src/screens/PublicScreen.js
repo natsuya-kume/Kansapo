@@ -1,14 +1,9 @@
 import React from "react";
-import { StyleSheet } from "react-native";
 import {
-  Container,
-  Header,
   Content,
   List,
   ListItem,
-  Thumbnail,
   Text,
-  Left,
   Body,
   Right,
   Button,
@@ -41,13 +36,9 @@ const PublicScreen = () => {
     );
   };
   return (
-    // <Container>
     <Content>
       <List>
         <ListItem thumbnail>
-          {/* <Left>
-              <Thumbnail square source={{ uri: "Image URL" }} />
-            </Left> */}
           <Body>
             <Text>関大LMS(公式)</Text>
             <Text note numberOfLines={1}>
@@ -63,9 +54,6 @@ const PublicScreen = () => {
           </Right>
         </ListItem>
         <ListItem thumbnail>
-          {/* <Left>
-            <Thumbnail square source={{ uri: "Image URL" }} />
-          </Left> */}
           <Body>
             <Text>インフォメーションシステム</Text>
             <Text note numberOfLines={1}>
@@ -82,18 +70,7 @@ const PublicScreen = () => {
         </ListItem>
       </List>
     </Content>
-    // </Container>
   );
 };
-// const styles = StyleSheet.create({
-//   button: {
-//     width: 50,
-//     height: 40,
-//     backgroundColor: "skyblue",
-//     borderRadius: 50,
-//     alignItems: "center",
-//     justifyContent: "center",
-//   },
-// });
 
 export default PublicScreen;

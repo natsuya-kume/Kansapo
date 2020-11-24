@@ -1,5 +1,5 @@
 // 利用規約を表示するスクリーン
-import React, { Component } from "react";
+import React from "react";
 import { View, Text, StyleSheet, Linking } from "react-native";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 

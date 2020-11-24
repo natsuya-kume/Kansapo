@@ -2,7 +2,6 @@
 import React from "react";
 import { View, Text } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-import colors from "../../../assets/colors";
 import CustomActionButton from "../../components/CustomActionButton";
 import { useNavigation } from "@react-navigation/native";
 
@@ -39,7 +38,6 @@ const WelcomeScreen = () => {
             width: 200,
             backgroundColor: "transparent",
             borderWidth: 1,
-            borderColor: colors.bgPrimary,
             marginBottom: 10,
           }}
           onPress={() => navigation.navigate("SignUpScreen")}
@@ -51,7 +49,6 @@ const WelcomeScreen = () => {
             width: 200,
             backgroundColor: "transparent",
             borderWidth: 1,
-            borderColor: colors.bgPrimary,
             marginBottom: 10,
           }}
           onPress={() => navigation.navigate("LoginScreen")}

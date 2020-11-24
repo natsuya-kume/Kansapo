@@ -10,13 +10,11 @@ import {
   Dimensions,
 } from "react-native";
 import { loadSelectedSubjects } from "../redux/actions";
-import { ScrollView } from "react-native-gesture-handler";
 const ITEM_WIDTH = Dimensions.get("window").width;
 const ITEM_HEIGHT = Dimensions.get("window").height;
 import { snapshotToArray } from "../helpers/FirebaseHelpers";
 import SubjectsModal from "../components/SubjectsModal";
 import Modal from "react-native-modal";
-import colors from "../../assets/colors";
 import { useDispatch, useSelector } from "react-redux";
 import firebase from "firebase/app";
 import EditSubjectModal from "../components/EditSubjectModal";
@@ -81,7 +79,6 @@ const Home = (props) => {
                   key={a.classroom}
                   style={{
                     marginTop: 10,
-                    // backgroundColor: "#f69679",
                     marginHorizontal: 3,
                   }}
                 >
@@ -146,7 +143,6 @@ const Home = (props) => {
   const time = ["1", "2", "3", "4", "5", "6"];
   return (
     <View style={styles.container}>
-      {/* <ScrollView> */}
       <View style={{ flexDirection: "row" }}>
         <View>
           <FlatList
@@ -211,15 +207,10 @@ const Home = (props) => {
           />
         </View>
       </View>
-      {/* </ScrollView> */}
 
       <SafeAreaView style={{ flex: 1 }}>
         <Modal isVisible={isEditModal}>
-          <EditSubjectModal
-            nav={toggleEditModal}
-            // onPress={deleteSubject}
-            editData={toEditData}
-          />
+          <EditSubjectModal nav={toggleEditModal} editData={toEditData} />
         </Modal>
       </SafeAreaView>
 
@@ -255,21 +246,14 @@ const styles = StyleSheet.create({
     width: 13,
     margin: 1,
     backgroundColor: "skyblue",
-    height: ITEM_HEIGHT / 8,
     textAlign: "center",
-    lineHeight: ITEM_HEIGHT / 8,
+    lineHeight: ITEM_HEIGHT / 8.3,
+    height: ITEM_HEIGHT / 8.3,
   },
   table: {
     margin: 1,
-    // resizeMode: "cover",
-    // backgroundColor: "snow",
     backgroundColor: "#dddddd",
     width: ITEM_WIDTH / 6.6,
-    height: ITEM_HEIGHT / 8,
+    height: ITEM_HEIGHT / 8.3,
   },
-  // alert: {
-  //   flex: 2,
-  //   justifyContent: "space-around",
-  //   alignItems: "center",
-  // },
 });

@@ -1,6 +1,6 @@
 // ローディング画面を表示するスクリーン
 import React, { Component } from "react";
-import { View, StyleSheet, Text, ActivityIndicator } from "react-native";
+import { View, StyleSheet, ActivityIndicator } from "react-native";
 import firebase from "firebase/app";
 import "firebase/auth";
 

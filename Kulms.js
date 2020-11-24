@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { StyleSheet, Text } from "react-native";
 
 import HomeScreen from "./src/screens/HomeScreen";
 import PublicScreen from "./src/screens/PublicScreen";
@@ -8,7 +8,6 @@ import SignUpScreen from "./src/screens/SignUpScreen";
 import LoginScreen from "./src/screens/LoginScreen";
 import TermsDrawerScreen from "./src/screens/TermsDrawerScreen";
 import PrivacyPolicyScreen from "./src/screens/AppSwitchNavigator/PrivacyPolicyScreen";
-import LoadingScreen from "./src/screens/AppSwitchNavigator/LoadingScreen";
 import WelcomeScreen from "./src/screens/AppSwitchNavigator/WelcomeScreen";
 import CustomDrawerComponent from "./src/screens/DrawerNavigator/CustomDrawerComponent";
 import SplashScreen from "./src/screens/SplashScreen";
@@ -24,15 +23,8 @@ import {
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import colors from "./assets/colors";
-import {
-  Entypo,
-  FontAwesome5,
-  Ionicons,
-  MaterialIcons,
-} from "@expo/vector-icons";
+import { FontAwesome5, Ionicons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
-import { DrawerItemList } from "@react-navigation/drawer";
 import useAuthenticateUser from "./src/hooks/useAuthenticateUser";
 import TermsScreen from "./src/screens/AppSwitchNavigator/TermsScreen";
 
@@ -53,11 +45,7 @@ const KulmsHooks = () => {
       {!auth.isSignedIn ? (
         <Stack.Navigator
           screenOptions={({ route }) => ({
-            headerStyle: {
-              // backgroundColor: colors.bgMain,
-            },
             headerTintColor: "black",
-            // headerTitle: "ログイン・新規登録",
             headerTitle: () => {
               switch (route.name) {
                 case "SignUpScreen":
@@ -111,12 +99,7 @@ const HomeTabNavigator = () => (
       },
     })}
     tabBarOptions={{
-      // activeTintColor: "black",
       activeTintColor: "#f67690",
-      // tabStyle: {
-      // backgroundColor: "#fff8cd",
-      // backgroundColor: "blue",
-      // },
     }}
   >
     <Tab.Screen name="時間割" component={HomeScreen} />
@@ -128,42 +111,20 @@ const HomeTabNavigator = () => (
   </Tab.Navigator>
 );
 
-// const getHeaderTitle = (route) => {
-//   const routeName = route.state
-//     ? route.state.routes[route.state.index].name
-//     : "Home";
-
-//   switch (routeName) {
-//     // case "利用規約":
-//     //   return "Kulms";
-//     // case "Setting":
-//     //   return "Kulms";
-//     default:
-//       return "Kulms";
-//   }
-// };
-
 const getHeaderTitle = (route) => {
   const routeName = getFocusedRouteNameFromRoute(route);
   const hideOnScreens = ["HomeTabNavigator"];
   switch (routeName) {
     case "TermsTabNavigator":
       return "Kanさぽ";
-    // case "Setting":
-    //   return "Kulms";
     default:
       return "Kanさぽ";
   }
-  // if (hideOnScreens.indexOf(routeName) > -1) return false;
-  // return true;
 };
 
 const HomeStackNavigator = ({ navigation }) => (
   <Stack.Navigator
     screenOptions={{
-      // headerStyle: {
-      //   backgroundColor: "#fff8cd",
-      // },
       headerTintColor: "black",
       headerLeft: () => (
         <Ionicons
@@ -174,15 +135,6 @@ const HomeStackNavigator = ({ navigation }) => (
           onPress={() => navigation.openDrawer()}
         />
       ),
-      headerRight: () => {
-        <Ionicons
-          name="ios-home"
-          size={30}
-          color="black"
-          style={{ marginRight: 10 }}
-          onPress={() => navigation.openDrawer()}
-        />;
-      },
     }}
   >
     <Stack.Screen
@@ -198,10 +150,6 @@ const HomeStackNavigator = ({ navigation }) => (
 const AppDrawerNavigator = ({ navigation }) => (
   <Drawer.Navigator
     drawerContent={(props) => <CustomDrawerComponent {...props} />}
-    // drawerContentOptions={{
-    //   // activeBackgroundColor: "pink",
-    //   activeTintColor: "#00a5dd",
-    // }}
   >
     <Drawer.Screen
       name="ホーム"

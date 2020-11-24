@@ -1,10 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import colors from "../../assets/colors";
 import { connect } from "react-redux";
 import firebase from "firebase/app";
 import "firebase/auth";
-// import CustomActionButton from "../components/CustomActionButton";
 
 class SettingScreen extends React.Component {
   signOut = async () => {
@@ -51,6 +49,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "transparent",
-    borderColor: colors.bgPrimary,
   },
 });
