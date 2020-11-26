@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "lms",
-    "slug": "lms",
+    "name": "Kanさぽ",
+    "slug": "Kan-sprt-slug",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -15,13 +15,13 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true,
-      "buildNumber": "1",
+      "buildNumber": "1.0.0",
       "bundleIdentifier": "com.timetable.TimeTableApp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
+
     "android": {
       "permissions": ["READ_EXTERNAL_STORAGE", "WRITE_EXTERNAL_STORAGE"],
       "package": "org.swallow.rnsample.app"
