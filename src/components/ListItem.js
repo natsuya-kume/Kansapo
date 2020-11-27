@@ -1,4 +1,4 @@
-// 授業リストの詳細を表示するコンポーネント
+// SubjectsModal内で表示する授業リストの詳細を表示するコンポーネント
 import React from "react";
 import {
   View,

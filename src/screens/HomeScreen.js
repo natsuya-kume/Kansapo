@@ -42,15 +42,15 @@ const Home = (props) => {
       const selectedSubjectsArray = snapshotToArray(selectedSubjects);
       dispatch(loadSelectedSubjects(selectedSubjectsArray));
     };
-
     fetchData();
   }, [user, dispatch, !isEditModal]);
 
-  // 授業編集モーダルが開かれる時の関数
+  // 授業編集モーダルが開かれる時の関数　indexは選択されたテーブル番号が入る
   const toggleEditModal = (item, index) => {
     setIsEditModal(!isEditModal);
     // index番号があるときだけセットする　→editModalを閉じたときはセットしない
     if (index) {
+      // table[index].subject[0]を編集データにいれる
       setToEditData(table[index].subject[0]);
     }
   };
@@ -97,8 +97,10 @@ const Home = (props) => {
     );
   };
 
+  // 時間割表の左上の空白
   const blank = [""];
 
+  // 時間割表
   const table = [
     { index: 0, exId: 37, subject: [] },
     { index: 1, exId: 37, subject: [] },
@@ -138,8 +140,10 @@ const Home = (props) => {
     { index: 35, exId: 37, subject: [] },
   ];
 
+  // 曜日の表示
   const period = ["月", "火", "水", "木", "金", "土"];
 
+  // 時間の表示
   const time = ["1", "2", "3", "4", "5", "6"];
   return (
     <View style={styles.container}>
@@ -174,11 +178,6 @@ const Home = (props) => {
         <View>
           <FlatList
             data={time}
-            ListEmptyComponent={() => (
-              <View>
-                <Text>aaa</Text>
-              </View>
-            )}
             keyExtractor={(item, index) => index.toString()}
             numColumns={1}
             renderItem={({ item }) => (
@@ -196,6 +195,7 @@ const Home = (props) => {
             renderItem={({ item, index }) => (
               <TouchableOpacity
                 onPress={() => {
+                  // tableの中のsubjectのlengthで判断
                   item.subject.length !== 0
                     ? toggleEditModal(item, index)
                     : toggleSubjectsModal();

@@ -1,5 +1,5 @@
 // 科目編集画面のコンポーネント
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -12,14 +12,14 @@ import { Form, Item, Input, Icon, Textarea, Toast } from "native-base";
 import { AntDesign, Entypo } from "@expo/vector-icons";
 import firebase from "firebase/app";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 const EditSubject = (props) => {
+  // 編集情報の管理
   const [classroom, setClassroom] = useState(props.editData.classroom);
   const [memo, setMemo] = useState(props.editData.memo);
   const [absentCount, setAbsentCount] = useState(props.editData.absentCount);
   const user = useSelector((state) => state.auth.currentUser);
-  const dispatch = useDispatch();
 
   // シラバスを開く関数
   const openSyllabus = () => {
@@ -32,8 +32,9 @@ const EditSubject = (props) => {
     });
   };
 
-  // 科目を消す関数
+  // 科目を消す関数　引数にはdb内のユーザーデータを受け取る
   const deleteSubject = async (editData) => {
+    // 削除する授業のキーを取得
     const editDataKey = editData.key;
     try {
       await firebase
@@ -47,8 +48,9 @@ const EditSubject = (props) => {
     }
   };
 
-  // 科目教室を保存する関数
+  // 科目教室を保存する関数　引数にはdb内のユーザーデータと入力された教室情報を受け取る
   const saveClassroom = async (classroom, editData) => {
+    // 削除する授業のキーを取得
     const editDataKey = editData.key;
 
     try {
@@ -58,13 +60,14 @@ const EditSubject = (props) => {
         .child(user.uid)
         .child(editDataKey)
         .child("name")
+        // classroom値を追加
         .update({ classroom: classroom });
     } catch (error) {
       console.log(error);
     }
   };
 
-  // メモを保存する関数
+  // メモを保存する関数　引数にはdb内のユーザーデータと入力されたメモ情報を受け取る
   const saveMemo = async (memo, editData) => {
     const editDataKey = editData.key;
 
@@ -75,13 +78,14 @@ const EditSubject = (props) => {
         .child(user.uid)
         .child(editDataKey)
         .child("name")
+        // memo値を追加
         .update({ memo: memo });
     } catch (error) {
       console.log(error);
     }
   };
 
-  // 欠席回数を保存する関数
+  // 欠席回数を保存する関数 引数にはdb内のユーザーデータと入力された欠席回数の情報を受け取る
   const saveAbsentCount = async (absentCount, editData) => {
     const editDataKey = editData.key;
 
@@ -92,6 +96,7 @@ const EditSubject = (props) => {
         .child(user.uid)
         .child(editDataKey)
         .child("name")
+        // absentCount値を追加
         .update({ absentCount: absentCount });
     } catch (error) {
       console.log(error);
@@ -108,6 +113,7 @@ const EditSubject = (props) => {
     setMemo(memo);
   };
 
+  // 入力された欠席情報を取得
   const getAbsentInfo = (absentCount) => {
     setAbsentCount(absentCount);
   };

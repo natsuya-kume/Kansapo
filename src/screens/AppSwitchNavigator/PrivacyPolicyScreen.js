@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, Linking } from "react-native";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 
 const PrivacyPolicyScreen = () => {
+  // googleformを開く関数
   const openSupport = () => {
     Linking.openURL(
       "https://docs.google.com/forms/d/e/1FAIpQLSe9TpS0OZWEERbwkKC-LBPLAySQnVM0XsEoAFbbntWYOf1GSQ/viewform"

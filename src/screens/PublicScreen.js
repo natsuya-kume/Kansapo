@@ -9,7 +9,9 @@ import {
   Button,
 } from "native-base";
 import { Linking } from "react-native";
+
 const PublicScreen = () => {
+  // lmsを開く関数
   const openKulms = () => {
     Linking.openURL("https://kulms.tl.kansai-u.ac.jp/").then((supported) => {
       if (!supported) {
@@ -21,6 +23,7 @@ const PublicScreen = () => {
   };
 
   const openInfoSystem = () => {
+    // インフォメーションシステムを開く関数
     Linking.openURL("https://portal.kansai-u.ac.jp/Portal/index.jsp").then(
       (supported) => {
         if (!supported) {

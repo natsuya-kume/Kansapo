@@ -1,5 +1,5 @@
 // 授業リストを管理する
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -75,6 +75,7 @@ const SubjectsModal = (props) => {
         .ref("selectedSubject")
         .child(user.uid)
         .once("value");
+      // 配列に変換
       const selectedSubjectsArray = snapshotToArray(selectedSubjects);
 
       dispatch(loadSelectedSubjects(selectedSubjectsArray));
