@@ -68,23 +68,33 @@ const Home = (props) => {
         if (table[index].subject.length === 1) {
           return (
             <View key={index}>
-              <Text
+              <View
                 key={a.subject}
-                style={{ marginTop: 3, fontWeight: "500", fontSize: 14 }}
+                style={{
+                  marginTop: 3,
+                  backgroundColor: "pink",
+                  width: ITEM_WIDTH / 6.6,
+                  height: ITEM_HEIGHT / 8.3,
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  paddingBottom: 10,
+                  paddingTop: 9,
+                }}
               >
-                {a.subject}
-              </Text>
-              {a.classroom === "" || !a.classroom ? null : (
-                <Text
-                  key={a.classroom}
-                  style={{
-                    marginTop: 10,
-                    marginHorizontal: 3,
-                  }}
-                >
-                  {a.classroom}
-                </Text>
-              )}
+                <Text style={{ fontSize: 13 }}>{a.subject}</Text>
+                {a.classroom === "" || !a.classroom ? null : (
+                  <Text
+                    key={a.classroom}
+                    style={{
+                      marginHorizontal: 3,
+                      fontSize: 11,
+                    }}
+                  >
+                    {a.classroom}
+                  </Text>
+                )}
+              </View>
             </View>
           );
         }

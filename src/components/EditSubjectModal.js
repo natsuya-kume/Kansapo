@@ -60,7 +60,6 @@ const EditSubject = (props) => {
         .child(user.uid)
         .child(editDataKey)
         .child("name")
-        // classroom値を追加
         .update({ classroom: classroom });
     } catch (error) {
       console.log(error);
@@ -78,7 +77,6 @@ const EditSubject = (props) => {
         .child(user.uid)
         .child(editDataKey)
         .child("name")
-        // memo値を追加
         .update({ memo: memo });
     } catch (error) {
       console.log(error);
@@ -96,7 +94,6 @@ const EditSubject = (props) => {
         .child(user.uid)
         .child(editDataKey)
         .child("name")
-        // absentCount値を追加
         .update({ absentCount: absentCount });
     } catch (error) {
       console.log(error);
@@ -154,7 +151,6 @@ const EditSubject = (props) => {
                 Toast.show({
                   text: "教室を保存しました",
                   buttonText: "OK",
-                  position: "bottom",
                 })
               }
             >
